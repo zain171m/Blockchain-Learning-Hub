@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+    <link rel="stylesheet" href="{% static 'HUB/global.css' %}" />
+    <link rel="stylesheet" href="{% static 'HUB/register.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap"
+    />
+  </head>
+  <body>
+    <div class="registor">
+      <div class="pic">
+        <img class="pic-child" alt="" src="{% static '/public/login_img.jpeg' %}" />
+      </div>
+      <section class="login">
+        <div class="welcome-to-learn-blockchain-parent">
+          <div class="welcome-to-learn">Welcome to learn Blockchain</div>
+          <div class="rectangle-parent">
+            <div class="frame-child"></div>
+            <button class="vector-parent" id="frameButton">
+              <div class="frame-item" ></div>
+
+              <div class="login1">Login</div>
+            </button>
+            <button class="vector-group">
+              <div class="frame-item" ></div>
+
+              <div class="register">Register</div>
+            </button>
+          </div>
+        </div>
+
+        {% if message %}
+        <div>{{ message }}</div>
+        {% endif %}
+
+      <form action="{% url 'register' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="enter-your-credentials-to-crea-parent">
+          <div class="enter-your-credentials">
+            Enter Your Credentials to create your account
+          </div>
+          <div class="rectangle-group">
+            <input class="group-child" type="text" name = "email" placeholder="Enter your Email Address"/>
+
+            <div class="email-address">Email Address</div>
+          </div>
+          <div class="rectangle-container">
+            <input class="group-item" type="text" name = "username" placeholder="Enter your Username" />
+
+            <div class="user-name">User name</div>
+          </div>
+          <div class="rectangle-group">
+            <div class="group-div">
+              <input class="group-child" type="text" name = "password" placeholder="Enter your Password"/>
+
+              <div class="password">Password</div>
+            </div>
+            <img
+              class="invisible-1-icon"
+              alt=""
+              src="{% static '/public/invisible-1.svg' %}"
+            />
+          </div>
+        </div>
+        <button class="frame-button" style="margin-top: 15px;">
+          <div class="rectangle-div"></div>
+          <div class="login2">Login</div>
+        </button>
+      </form>
+      </section>
+    </div>
+  
+  
+    <script>
+      var frameButton = document.getElementById("frameButton");
+      if (frameButton) {
+        frameButton.addEventListener("click", function (e) {
+          window.location.href = "{% url 'login' %}";
+        });
+      }
+      </script>
+  </body>
+</html>

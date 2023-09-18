@@ -1,0 +1,76 @@
+.conquer-confusion- {
+  position: relative;
+  letter-spacing: 0.04em;
+  font-weight: 500;
+}
+.group-child,
+.group-item {
+  position: absolute;
+  border-radius: var(--br-41xl);
+}
+.group-child {
+  top: 30px;
+  left: 12px;
+  background-color: #545ae8;
+  filter: blur(54px);
+  width: 151px;
+  height: 29px;
+  opacity: 0.5;
+}
+.group-item {
+  top: 0;
+  left: 0;
+  background-color: var(--color-lightseagreen);
+  width: 179px;
+  height: 60px;
+}
+.discuss-now {
+  position: absolute;
+  top: 14px;
+  left: 20.5px;
+  font-size: var(--font-size-3xl);
+  font-weight: 500;
+  font-family: var(--font-poppins);
+  color: var(--color-white);
+  text-align: left;
+}
+.rectangle-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 179px;
+  height: 60px;
+}
+.footer-inner {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  position: relative;
+  width: 179px;
+  height: 60px;
+}
+.footer {
+  position: relative;
+  background-color: var(--color-gray-100);
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 269px 699px 215px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 27px;
+  text-align: center;
+  font-size: 26px;
+  color: #b2b3cf;
+  font-family: var(--font-poppins);
+}
+@media screen and (max-width: 1783px) {
+  .footer {
+    padding-left: var(--padding-xl);
+    padding-right: var(--padding-xl);
+    box-sizing: border-box;
+  }
+}

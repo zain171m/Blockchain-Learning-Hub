@@ -1,0 +1,614 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+    <link rel="stylesheet" href="{% static 'HUB/global2.css' %}" />
+    <link rel="stylesheet" href="{% static 'HUB/nav-bar.css' %}" />
+    <link rel="stylesheet" href="{% static 'HUB/index.css' %}" />
+    <link rel="stylesheet" href="{% static 'HUB/frame-466.css' %}" />
+    <link rel="stylesheet" href="{% static 'HUB/frame-467.css' %}" />
+    <link rel="stylesheet" href="{% static 'HUB/footer.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Nunito Sans:wght@400&display=swap"
+    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  </head>
+  
+  <body>
+    <section class="nav-bar">
+      <section class="group-parent">
+        <div class="group-wrapper">
+          <div class="cs50-blockchain-wrapper">
+            <h3 class="cs50-blockchain">CS50 Blockchain</h3>
+          </div>
+        </div>
+        <div class="frame-parent">
+            {% if user.is_authenticated %}
+            <button class="rectangle-parent" id="frameButton">
+              <div class="frame-child"></div>
+            <div class="logout">Log Out</div>
+          </button>
+            {% else %}
+            <button class="rectangle-parent" id="frameButton2">
+              <div class="frame-child"></div>
+            <div class="login">Login</div>
+          </button>
+            {% endif %}
+          
+          <button class="rectangle-group" id="frameButton1">
+            <div class="frame-item"></div>
+            <div class="sign-up">Sign Up</div>
+          </button>
+        </div>
+      </section>
+    </section>
+
+    <script>
+      var frameButton = document.getElementById("frameButton");
+      if (frameButton) {
+        frameButton.addEventListener("click", function (e) {
+          // Please sync "login/reg" to the project
+            window.location.href = "{% url 'logout' %}";
+        });
+      }
+      
+      var frameButton2 = document.getElementById("frameButton2");
+      if (frameButton2) {
+        frameButton2.addEventListener("click", function (e) {
+            window.location.href = "{% url 'login' %}";
+        });
+      }
+
+      var frameButton1 = document.getElementById("frameButton1");
+      if (frameButton1) {
+        frameButton1.addEventListener("click", function (e) {
+            window.location.href = "{% url 'register' %}";
+        });
+      }
+      </script>
+  </body>
+</html>
+<html>
+  <body>
+    <section class="main-section">
+      <div class="learning-blockchain-is-now-muc-parent">
+        <h1 class="learning-blockchain-is-container">
+          {% if user.is_authenticated %}
+          <span>Welcome</span>
+          <span class="span"> </span>
+          <span class="blockchain-is-now">{{request.user}}</span>
+          {% endif %}
+          <br>
+          <span>Embark</span>
+          <span class="span"> </span>
+          <span class="blockchain-is-now">on your blockchain journey here</span>
+        </h1>
+        <h6 class="totc-is-an">
+          Blockchain Learning Hub is an interactive platform for studying blockchain technology through research papers, articles, and quizzes
+        </h6>
+      </div>
+      <img class="main-section-child" alt="" src="{% static 'public/frame-453@2x.png' %}" />
+    </section>
+  </body>
+  
+</html>
+
+<html>
+  
+  <body>
+    <div class="frame-top">
+      <section class="frame-section">
+        <div class="group-wrapper10">
+          <div class="research-papers-wrapper">
+            <h1 class="research-papers">Research Papers</h1>
+          </div>
+        </div>
+      </section>
+      <section class="frame-wrapper1">
+        <div class="frame-parent1">
+          {% for pair in paper_pairs %}
+          <div class="group-parent7">
+            {% for obj in pair %}
+            <a  href="{{ obj.link}}" class="link-like-div">
+            <div class="group-wrapper11">
+              <div class="group-wrapper12">
+                <div class="group-wrapper12">
+                  <div class="rectangle-parent11">
+                    <div class="group-child13"></div>
+                    <div class="group-parent8">
+                      <div class="rectangle-parent12">
+                        <img
+                          class="group-child14"
+                          alt=""
+                          src="{{ obj.photo.url }}"
+                        />
+                        <div class="group-child15"></div>
+                      </div>
+                      
+                      <h2 class="aws-certified-solutions4">
+                        {{obj.name}}
+                      </h2>
+                    
+                      <div class="lorem-ipsum-dolor4">
+                        {{obj.description}}
+                      </div>
+                    </div>
+                    <button class="rectangle-parent13" id="groupButton" data-id="{{obj.id}}">
+                      <div class="group-child16"></div>
+                      <b class="take-quiz-now4">Take Quiz Now</b>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+              {% endfor %}
+            </div>
+            {% endfor %}
+            <input id = "ppr_btn" style="background: #49bbbd;"  class="ccbtn" type="button" value="Add Research Paper">
+            <div id = ppr_div class="wrapper" style="display: none">
+              <form method="post" action="" class="ccform">
+                {% csrf_token %}
+              <div class="ccfield-prepend">
+                  <span class="ccform-addon"></span>
+                  <input class="ccformfield" type="text" id = "name" name = "name" placeholder="Name" required>
+              </div>
+              <div class="ccfield-prepend">
+                  <span class="ccform-addon"></span>
+                  <input class="ccformfield" type="text" id = "link" name = "link" placeholder="Link" required>
+              </div>
+              <div class="ccfield-prepend">
+                  <span class="ccform-addon"></span>
+                  <textarea class="ccformfield" id="description" name="description" rows="8" placeholder="Description" required></textarea>
+              </div>
+              <div class="ccfield-prepend">
+                <span class="ccform-addon"></span>
+                <input class="ccformfield" type="file" id = "photo" placeholder="Upload Photo" name = "photo">
+            </div>
+              <div class="ccfield-prepend">
+                  <input id = "save_ppr" class="ccbtn" type="submit" value="Submit">
+              </div>
+              </form>
+          </div>
+
+
+
+            <input id = qz_btn style="background: #49bbbd;" class="ccbtn" type="button" value="Add Quiz">
+            <div id = qz_div class="wrapper" style="display: none;">
+              <form method="post" action="" class="ccform">
+                 {% csrf_token %} 
+                <div class="ccfield-prepend">
+                  <span class="ccform-addon"></span>
+                  <select class="ccformfield" id="research-paper" name="selected-paper" required>
+                    <option value="" selected disabled>Select a Research Paper</option>
+                    {% for paper in Papers %}
+                    <option value="{{paper.name}}">{{paper.name}}</option> <!-- Replace with actual paper data -->
+                    {% endfor %}
+                    <!-- Add more options as needed -->
+                </select>
+                  
+              </div>
+              <div class="ccfield-prepend">
+                  <span class="ccform-addon"></span>
+                  <textarea class="ccformfield" id = "question"  name="question" rows="8" placeholder="Question" required></textarea>
+              </div>
+              <div class="ccfield-prepend">
+                <span class="ccform-addon"></span>
+                <input class="ccformfield" type="text" id = "option1"  name = "option1" placeholder="Option 1" required>
+            </div>
+            <div class="ccfield-prepend">
+                <span class="ccform-addon"></i></span>
+                <input class="ccformfield" type="text" id = "option2"  name = "option2" placeholder="Option 2" required>
+            </div>
+            <div class="ccfield-prepend">
+                <span class="ccform-addon"></i></span>
+                <input class="ccformfield" type="text" id = "option3" name = "option3" placeholder="Option 3" required>
+            </div>
+            <div class="ccfield-prepend">
+                <span class="ccform-addon"></span>
+                <input class="ccformfield" type="text"  id = "option4" name = "option4" placeholder="Option 4" required>
+            </div>
+            <div class="ccfield-prepend">
+              <span class="ccform-addon"></span>
+              <input class="ccformfield" type="text" id = "correct_option" name = "correct_option" placeholder="Correct Option Text" required>
+          </div>
+              <div class="ccfield-prepend">
+                  <input id = "save_qz" class="ccbtn" type="button" value="Submit">
+              </div>
+              </form>
+          </div>
+            </div>
+                      
+          
+      </section>
+    </div>
+
+    <script>
+      var groupButtons = document.querySelectorAll("#groupButton");
+
+      // Add click event listeners to each element
+      groupButtons.forEach(function (button) {
+        button.addEventListener("click", function (e) {
+          e.stopPropagation();
+          e.preventDefault(); // Prevent the default link behavior
+          var id = button.getAttribute("data-id");
+
+          var type = "Research"; // Replace this with your actual type value
+          var url = `/quiz/${id}/${type}/`;
+          window.location.href = url;
+          
+        });
+      });
+      
+      let ppr_btn = document.querySelector("#ppr_btn");
+      ppr_btn.addEventListener("click", function(){
+          document.querySelector("#ppr_div").style.display = "block";
+          document.querySelector("#save_ppr").addEventListener('click', function() {
+          update_paper(); 
+      });
+    });
+
+
+
+      let qz_btn = document.querySelector("#qz_btn");
+      qz_btn.addEventListener("click", function(){
+          document.querySelector("#qz_div").style.display = "block";
+          document.querySelector("#save_qz").addEventListener('click', function() {
+          update_quiz(); 
+      });
+    });
+
+
+    // Function to update the post
+  function update_paper(){
+  console.log("Update post function is ready to update");
+  let Name = document.querySelector(`#name`).value;
+  let Description = document.querySelector(`#description`).value;
+  let Link = document.querySelector(`#link`).value;
+  let photo = document.querySelector(`#photo`);
+
+  let formData = new FormData();
+  formData.append('name', Name);
+  formData.append('description', Description);
+  formData.append('link', Link);
+  formData.append('photo', photo.files[0]);
+
+
+  fetch('/ppr_update', {
+    method: 'POST',
+  body: formData,
+  })
+  .then(response => response.json())
+  .then(Paper => {
+      // Print result
+      console.log(Post);
+      document.querySelector(`#ppr_div`).style.display = 'none';
+  })
+  // Catch any errors and log them to the console
+  .catch(error => {
+    console.log('Error:', error);
+  });
+
+  return false;
+}
+
+  // Function to update the quiz
+  function update_quiz(){
+  console.log("Update quiz function is ready to update");
+  let name = document.querySelector(`#research-paper`).value;
+  console.log(name);
+  let question = document.querySelector(`#question`).value;
+  let option1 = document.querySelector(`#option1`).value;
+  let option2 = document.querySelector(`#option2`).value;
+  let option3 = document.querySelector(`#option3`).value;
+  let option4 = document.querySelector(`#option4`).value;
+  let correct = document.querySelector(`#correct_option`).value;
+
+  let formData = new FormData();
+  formData.append('name', name);
+  formData.append('question', question);
+  formData.append('option1', option1);
+  formData.append('option2', option2);
+  formData.append('option3', option3);
+  formData.append('option4', option4);
+  formData.append('correct', correct);
+
+  fetch('/qz_update', {
+    method: 'POST',
+  body: formData,
+  })
+  .then(response => response.json())
+  .then(Paper => {
+      // Print result
+      console.log(Paper);
+      document.querySelector(`#qz_div`).style.display = 'none';
+  })
+  // Catch any errors and log them to the console
+  .catch(error => {
+    console.log('Error:', error);
+  });
+
+  return false;
+}
+
+
+      </script>
+  </body>
+</html>
+<html>
+  <body>
+    <div class="frame-root">
+      <section class="frame-wrapper">
+        <div class="group-container">
+          <div class="blockchain-articles-wrapper">
+            <h1 class="blockchain-articles">Blockchain Articles</h1>
+          </div>
+        </div>
+      </section>
+      <section class="frame-container">
+        <div class="frame-group">
+          {% for pair in art_pairs %}
+          <div class="frame-div">
+            {% for obj in pair %}
+            <a  href="{{ obj.link}}" class="link-like-div">
+            <div class="group-frame">
+              <div class="group-div">
+                <div class="group-div">
+                  <div class="rectangle-parent1">
+                    <div class="group-inner"></div>
+                    <div class="group-parent1">
+                      <div class="rectangle-parent2">
+                        <img
+                          class="rectangle-icon"
+                          alt=""
+                          src="{{ obj.photo.url }}"
+                        />
+
+                        <div class="rectangle-div"></div>
+                      </div>
+                      <h2 class="aws-certified-solutions">
+                        {{obj.name}}
+                      </h2>
+                      <div class="lorem-ipsum-dolor">
+                        {{obj.description}}
+                      </div>
+                    </div>
+                    <button class="group-button" id = "quizbutton" data-id="{{obj.id}}">
+                      <div class="group-child1"></div>
+                      <b class="take-quiz-now">Take Quiz Now</b>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+            {% endfor %}
+          </div>
+          {% endfor %}
+
+          <input id = "art_btn" style="background: #49bbbd;"  class="ccbtn" type="button" value="Add an Article">
+            <div id = art_div class="wrapper" style="display: none">
+              <form method="post" action="" class="ccform">
+                {% csrf_token %}
+              <div class="ccfield-prepend">
+                  <span class="ccform-addon"></span>
+                  <input class="ccformfield" type="text" id = "aname" name = "name" placeholder="Name" required>
+              </div>
+              <div class="ccfield-prepend">
+                  <span class="ccform-addon"></span>
+                  <input class="ccformfield" type="text" id = "alink" name = "link" placeholder="Link" required>
+              </div>
+              <div class="ccfield-prepend">
+                  <span class="ccform-addon"></span>
+                  <textarea class="ccformfield" id="adescription" name="description" rows="8" placeholder="Description" required></textarea>
+              </div>
+              <div class="ccfield-prepend">
+                <span class="ccform-addon"></span>
+                <input class="ccformfield" type="file" id = "aphoto" placeholder="Upload Photo" name = "photo">
+            </div>
+              <div class="ccfield-prepend">
+                  <input id = "save_art" class="ccbtn" type="submit" value="Submit">
+              </div>
+              </form>
+          </div>
+
+
+
+            <input id = artq_btn style="background: #49bbbd;" class="ccbtn" type="button" value="Add Article quiz">
+            <div id = artq_div class="wrapper" style="display: none;">
+              <form method="post" action="" class="ccform">
+                 {% csrf_token %} 
+                <div class="ccfield-prepend">
+                  <span class="ccform-addon"></span>
+                  <select class="ccformfield" id="aresearch-paper" name="selected-paper" required>
+                    <option value="" selected disabled>Select an Article</option>
+                    {% for article in articles %}
+                    <option value="{{article.name}}">{{article.name}}</option> <!-- Replace with actual paper data -->
+                    {% endfor %}
+                    <!-- Add more options as needed -->
+                </select>
+                  
+              </div>
+              <div class="ccfield-prepend">
+                  <span class="ccform-addon"></span>
+                  <textarea class="ccformfield" id = "aquestion"  name="question" rows="8" placeholder="Question" required></textarea>
+              </div>
+              <div class="ccfield-prepend">
+                <span class="ccform-addon"></span>
+                <input class="ccformfield" type="text" id = "aoption1"  name = "option1" placeholder="Option 1" required>
+            </div>
+            <div class="ccfield-prepend">
+                <span class="ccform-addon"></i></span>
+                <input class="ccformfield" type="text" id = "aoption2"  name = "option2" placeholder="Option 2" required>
+            </div>
+            <div class="ccfield-prepend">
+                <span class="ccform-addon"></i></span>
+                <input class="ccformfield" type="text" id = "aoption3" name = "option3" placeholder="Option 3" required>
+            </div>
+            <div class="ccfield-prepend">
+                <span class="ccform-addon"></span>
+                <input class="ccformfield" type="text"  id = "aoption4" name = "option4" placeholder="Option 4" required>
+            </div>
+            <div class="ccfield-prepend">
+              <span class="ccform-addon"></span>
+              <input class="ccformfield" type="text" id = "acorrect_option" name = "correct_option" placeholder="Correct Option Text" required>
+          </div>
+              <div class="ccfield-prepend">
+                  <input id = "save_artq" class="ccbtn" type="button" value="Submit">
+              </div>
+              </form>
+          </div>
+            </div>
+        </section>
+    </div>
+  </body>
+  <script>
+      var quizbutton = document.querySelectorAll("#quizbutton");
+
+      // Add click event listeners to each element
+      quizbutton.forEach(function (button) {
+        button.addEventListener("click", function (e) {
+          e.stopPropagation();
+          e.preventDefault(); // Prevent the default link behavior
+          var id = button.getAttribute("data-id");
+
+          var type = "Article"; // Replace this with your actual type value
+          var url = `/quiz/${id}/${type}/`;
+          window.location.href = url;
+          
+        });
+      });
+      
+      let art_btn = document.querySelector("#art_btn");
+      art_btn.addEventListener("click", function(){
+          document.querySelector("#art_div").style.display = "block";
+          document.querySelector("#save_art").addEventListener('click', function() {
+          update_art(); 
+      });
+    });
+
+
+
+      let artq_btn = document.querySelector("#artq_btn");
+      artq_btn.addEventListener("click", function(){
+          document.querySelector("#artq_div").style.display = "block";
+          document.querySelector("#save_artq").addEventListener('click', function() {
+          update_artq(); 
+      });
+    });
+
+
+    // Function to update the post
+  function update_art(){
+  console.log("Update post function is ready to update");
+  let Name = document.querySelector(`#aname`).value;
+  let Description = document.querySelector(`#adescription`).value;
+  let Link = document.querySelector(`#alink`).value;
+  let photo = document.querySelector(`#aphoto`);
+
+  let formData = new FormData();
+  formData.append('name', Name);
+  formData.append('description', Description);
+  formData.append('link', Link);
+  formData.append('photo', photo.files[0]);
+
+
+  fetch('/art_update', {
+    method: 'POST',
+  body: formData,
+  })
+  .then(response => response.json())
+  .then(Paper => {
+      // Print result
+      console.log(Paper);
+      document.querySelector(`#art_div`).style.display = 'none';
+  })
+  // Catch any errors and log them to the console
+  .catch(error => {
+    console.log('Error:', error);
+  });
+
+  return false;
+}
+
+  // Function to update the quiz
+  function update_artq(){
+  console.log("Update quiz function is ready to update");
+  let name = document.querySelector(`#aresearch-paper`).value;
+  console.log(name);
+  let question = document.querySelector(`#aquestion`).value;
+  let option1 = document.querySelector(`#aoption1`).value;
+  let option2 = document.querySelector(`#aoption2`).value;
+  let option3 = document.querySelector(`#aoption3`).value;
+  let option4 = document.querySelector(`#aoption4`).value;
+  let correct = document.querySelector(`#acorrect_option`).value;
+
+  let formData = new FormData();
+  formData.append('name', name);
+  formData.append('question', question);
+  formData.append('option1', option1);
+  formData.append('option2', option2);
+  formData.append('option3', option3);
+  formData.append('option4', option4);
+  formData.append('correct', correct);
+
+  fetch('/artq_update', {
+    method: 'POST',
+  body: formData,
+  })
+  .then(response => response.json())
+  .then(Paper => {
+      // Print result
+      console.log(Paper);
+      document.querySelector(`#artq_div`).style.display = 'none';
+  })
+  // Catch any errors and log them to the console
+  .catch(error => {
+    console.log('Error:', error);
+  });
+
+  return false;
+}
+
+
+      </script>
+</html>
+<html>
+  <body>
+    <div class="footer">
+      <div class="conquer-confusion-">Conquer confusion - join our forums!</div>
+      <button class="footer-inner" id = "chat_btn">
+        <div class="rectangle-container">
+          <div class="group-child"></div>
+          <div class="group-item"></div>
+          <div class="discuss-now">Discuss Now</div>
+        </div>
+      </button>
+    </div>
+  </body>
+  <script>
+    // Get a reference to the button element
+    var button = document.getElementById("chat_btn");
+
+    // Add a click event listener to the button
+    button.addEventListener("click", function() {
+        // Specify the URL you want to open
+        var url = "{% url 'Chat' %}"; // Replace with your desired URL
+
+        // Open the URL in a new tab or window
+        window.open(url, "_blank");
+    });
+</script>
+</html>
+
+
+

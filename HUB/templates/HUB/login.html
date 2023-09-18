@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+    <link rel="stylesheet" href="{% static 'HUB/global.css' %}" />
+    <link rel="stylesheet" href="{% static 'HUB/login.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap"
+    />
+  </head>
+  <body>
+    <div class="login3">
+      <div class="pic1">
+        <img class="pic-item" alt="" src="{% static '/public/login_img.jpeg' %}" />
+      </div>
+      <section class="login4">
+        <div class="welcome-to-learn-blockchain-group">
+          <div class="welcome-to-learn1">Welcome to learn Blockchain</div>
+          <div class="frame-div">
+            <div class="frame-child1"></div>
+            <button class="vector-container">
+              <div
+                class="rectangle-icon"
+                ></div>
+              <div class="login5">Login</div>
+            </button>
+            <button class="vector-parent1" id="frameButton1">
+              <div class="rectangle-icon"> </div>
+
+              <div class="register1">Register</div>
+            </button>
+          </div>
+        </div>
+        {% if message %}
+        <div>{{ message }}</div>
+        {% endif %}
+
+        <form action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        
+        <div class="enter-your-credentials-to-acce-parent">
+          <div class="enter-your-credentials1">
+            Enter Your Credentials to access your account
+          </div>
+          <div class="rectangle-parent1">
+            <input class="rectangle-input" type="text" name = "username" placeholder="Enter your Username"/>
+            <div class="user-name1">User name</div>
+          </div>
+          <div class="group-container">
+            <div class="rectangle-parent2">
+              <input class="group-child1" type="text" name = "password" placeholder="Enter your Password" />
+
+              <div class="password1">Password</div>
+            </div>
+            <img
+              class="invisible-1-icon1"
+              alt=""
+              src="{% static '/public/invisible-11.svg' %}"
+            />
+          </div>
+        </div>
+        <button class="rectangle-parent3" style="margin-top: 15px;">
+          <div class="frame-child3"></div>
+          <div class="login7">Login</div>
+        </button>
+      </section>
+    </div>
+  </form>
+
+    <script>
+      var frameButton1 = document.getElementById("frameButton1");
+      if (frameButton1) {
+        frameButton1.addEventListener("click", function (e) {
+          window.location.href = "{% url 'register' %}";
+        });
+      }
+      </script>
+      
+  </body>
+</html>

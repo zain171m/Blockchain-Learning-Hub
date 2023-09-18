@@ -1,0 +1,83 @@
+.span {
+  color: #2f327d;
+}
+.blockchain-is-now {
+  color: var(--color-white);
+}
+.learning-blockchain-is-container {
+  margin: 0;
+  align-self: stretch;
+  position: relative;
+  font-size: inherit;
+  font-weight: 700;
+  font-family: inherit;
+}
+.totc-is-an {
+  margin: 0;
+  align-self: stretch;
+  position: relative;
+  font-size: var(--font-size-5xl);
+  line-height: 160%;
+  font-weight: 400;
+  font-family: var(--font-nunito-sans);
+  color: var(--color-white);
+}
+.learning-blockchain-is-now-muc-parent {
+  height: 272px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+.main-section-child {
+  position: relative;
+  width: 864px;
+  height: 896px;
+  object-fit: cover;
+}
+.main-section {
+  position: relative;
+  background-color: var(--color-lightseagreen);
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  padding: 2px 126px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 62px;
+  text-align: left;
+  font-size: 54px;
+  color: #f48c06;
+  font-family: var(--font-poppins);
+}
+@media screen and (max-width: 1783px) {
+  .main-section {
+    flex-direction: column;
+  }
+}
+@media screen and (max-width: 953px) {
+  .learning-blockchain-is-container {
+    font-size: var(--font-size-11xl);
+    text-align: left;
+    align-self: stretch;
+    width: auto;
+  }
+  .totc-is-an {
+    font-size: 15px;
+    text-align: left;
+  }
+  .learning-blockchain-is-now-muc-parent,
+  .main-section-child {
+    align-self: stretch;
+    width: auto;
+    flex: 1;
+  }
+  .main-section {
+    padding-left: var(--padding-xl);
+    padding-right: var(--padding-xl);
+    box-sizing: border-box;
+  }
+}
